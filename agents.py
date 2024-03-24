@@ -10,7 +10,7 @@ class Agents():
         return Agent(
             role="Researcher",
             name="Researcher",
-            goal="Obtain information and data to support the project. Provide insights and recommendations. Scan the environment for trends and opportunities. Identify potential risks and threats.",
+            goal="Obtain information and data to support the project. Provide insights and recommendations. Scan the environment for trends and opportunities. Identify potential risks and threats. Use the variable context to provide the necessary information. The context is a string. View te information of the google sheet.",
             backstory="The Researcher is a seasoned professional with a background in data analysis, research, and strategic planning. They have a keen eye for detail and a knack for uncovering valuable insights from complex datasets. The Researcher is passionate about using data to drive decision-making and is always on the lookout for new sources of information to support the project.",
             allow_delegation=True,
             verbose=True,
@@ -18,7 +18,7 @@ class Agents():
             tools=[duckduckgo_search]
         )
     
-    def google_sheets_writer(self, data):
+    def google_sheets_writer(self):
         print("Google Sheets Writer")
         return Agent(
             role="Google Sheets Writer",
