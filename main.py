@@ -17,7 +17,7 @@ load_dotenv(find_dotenv())
 llm = ChatOpenAI(model=os.getenv("OPENAI_MODEL_NAME") , api_key=os.getenv("OPENAI_API_KEY", "NA"))
 
 print("CrewAI is ready to go!")
-print("OpenAI model:", llm.model)
+print("OpenAI model:", os.getenv("OPENAI_MODEL_NAME"))
 
 crew = Crew(
     verbose=True,
