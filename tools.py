@@ -114,4 +114,17 @@ def interpret_code_with_openai(code):
     Returns:
         str: The interpretation of the code.
     """
-    return interpreter(code)
+    return interpreter.chat(code)
+
+@tool("Generate code with OpenAI")
+def generate_code_with_openai(prompt):
+    """
+    Generate code using the OpenAI Codex model.
+
+    Args:
+        prompt (str): The prompt to generate code from.
+
+    Returns:
+        str: The generated code.
+    """
+    return interpreter.chat(prompt)
