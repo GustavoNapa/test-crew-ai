@@ -6,6 +6,9 @@ import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 from interpreter import interpreter
 
+# Loading Human Tools
+human_tools = load_tools(["human"])
+
 @tool("Log event to Google Sheets")
 def write_in_google_sheets(event):
     """
@@ -128,3 +131,25 @@ def generate_code_with_openai(prompt):
         str: The generated code.
     """
     return interpreter.chat(prompt)
+
+@tool("Accept human response")
+def accept_human_response():
+    """
+    Accepts a human response during the execution of a task.
+
+    Returns:
+        str: The human response.
+    """
+    response = input("Enter your response: ")
+    return response
+
+@tool("Accept human feedback")
+def accept_human_feedback():
+    """
+    Accepts human feedback during the execution of a task.
+
+    Returns:
+        str: The human feedback.
+    """
+    feedback = input("Enter your feedback: ")
+    return feedback

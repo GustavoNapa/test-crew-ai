@@ -1,7 +1,7 @@
 from crewai import Agent
 
 from langchain_community.tools import DuckDuckGoSearchRun
-from tools import write_file, execute_command, generate_documentation, create_folder, interpret_code_with_openai, generate_code_with_openai
+from tools import write_file, execute_command, generate_documentation, create_folder, interpret_code_with_openai, generate_code_with_openai, accept_human_response, accept_human_feedback
 
 class Agents():
     def researcher(self):
@@ -67,7 +67,17 @@ class Agents():
                 """,
             verbose=True,
             allow_delegation=True,
-            tools=[duckduckgo_search, write_file, execute_command, generate_documentation, create_folder, interpret_code_with_openai, generate_code_with_openai]
+            tools=[
+                duckduckgo_search, 
+                write_file, 
+                execute_command, 
+                generate_documentation, 
+                create_folder, 
+                interpret_code_with_openai, 
+                generate_code_with_openai, 
+                accept_human_response, 
+                accept_human_feedback
+            ]
         )
     
     def the_copilot_programmer(self):
@@ -108,7 +118,17 @@ class Agents():
                 """,
             verbose=True,
             allow_delegation=True,
-            tools=[duckduckgo_search, write_file, execute_command, generate_documentation, create_folder, interpret_code_with_openai, generate_code_with_openai]
+            tools=[
+                duckduckgo_search, 
+                write_file, 
+                execute_command, 
+                generate_documentation, 
+                create_folder, 
+                interpret_code_with_openai, 
+                generate_code_with_openai, 
+                accept_human_response, 
+                accept_human_feedback
+            ]
         )
         
     def the_administrator(self):
@@ -146,7 +166,17 @@ class Agents():
                 """,
             verbose=True,
             allow_delegation=True,
-            tools=[duckduckgo_search, write_file, execute_command, generate_documentation, create_folder, interpret_code_with_openai, generate_code_with_openai]
+            tools=[
+                duckduckgo_search, 
+                write_file, 
+                execute_command, 
+                generate_documentation, 
+                create_folder, 
+                interpret_code_with_openai, 
+                generate_code_with_openai, 
+                accept_human_response, 
+                accept_human_feedback
+            ]
         )
         
     def the_editor(self):
@@ -174,7 +204,17 @@ class Agents():
                 """,
             verbose=True,
             allow_delegation=True,
-            tools=[duckduckgo_search, write_file, execute_command, generate_documentation, create_folder, interpret_code_with_openai, generate_code_with_openai]
+            tools=[
+                duckduckgo_search, 
+                write_file, 
+                execute_command, 
+                generate_documentation, 
+                create_folder, 
+                interpret_code_with_openai, 
+                generate_code_with_openai, 
+                accept_human_response, 
+                accept_human_feedback
+            ]
         )
         
     def the_secretary(self):
@@ -201,7 +241,17 @@ class Agents():
                 """,
             verbose=True,
             allow_delegation=False,
-            tools=[duckduckgo_search, write_file, execute_command, generate_documentation, create_folder, interpret_code_with_openai, generate_code_with_openai]
+            tools=[
+                duckduckgo_search, 
+                write_file, 
+                execute_command, 
+                generate_documentation, 
+                create_folder, 
+                interpret_code_with_openai, 
+                generate_code_with_openai, 
+                accept_human_response, 
+                accept_human_feedback
+            ]
         )
         
     def the_program_clerk(self):
@@ -242,7 +292,17 @@ class Agents():
                 """,
             verbose=True,
             allow_delegation=False,
-            tools=[duckduckgo_search, write_file, execute_command, generate_documentation, create_folder, interpret_code_with_openai, generate_code_with_openai]
+            tools=[
+                duckduckgo_search, 
+                write_file, 
+                execute_command, 
+                generate_documentation, 
+                create_folder, 
+                interpret_code_with_openai, 
+                generate_code_with_openai, 
+                accept_human_response, 
+                accept_human_feedback
+            ]
         )
         
     def the_toolsmith(self):
@@ -287,7 +347,17 @@ class Agents():
                 """,
             verbose=True,
             allow_delegation=True,
-            tools=[duckduckgo_search, write_file, execute_command, generate_documentation, create_folder, interpret_code_with_openai, generate_code_with_openai]
+            tools=[
+                duckduckgo_search, 
+                write_file, 
+                execute_command, 
+                generate_documentation, 
+                create_folder, 
+                interpret_code_with_openai, 
+                generate_code_with_openai, 
+                accept_human_response, 
+                accept_human_feedback
+            ]
         )
         
     def the_tester(self):
@@ -325,7 +395,17 @@ class Agents():
                 """,
             verbose=True,
             allow_delegation=True,
-            tools=[duckduckgo_search, write_file, execute_command, generate_documentation, create_folder, interpret_code_with_openai, generate_code_with_openai]
+            tools=[
+                duckduckgo_search, 
+                write_file, 
+                execute_command, 
+                generate_documentation, 
+                create_folder, 
+                interpret_code_with_openai, 
+                generate_code_with_openai, 
+                accept_human_response, 
+                accept_human_feedback
+            ]
         )
         
     def the_language_lawyer(self):
@@ -357,5 +437,15 @@ class Agents():
                 """,
             verbose=True,
             allow_delegation=True,
-            tools=[duckduckgo_search, write_file, execute_command, generate_documentation, create_folder, interpret_code_with_openai, generate_code_with_openai]
+            tools=[
+                duckduckgo_search, 
+                write_file, 
+                execute_command, 
+                generate_documentation, 
+                create_folder, 
+                interpret_code_with_openai, 
+                generate_code_with_openai, 
+                accept_human_response, 
+                accept_human_feedback
+            ]
         )
