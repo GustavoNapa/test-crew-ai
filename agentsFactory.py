@@ -4,8 +4,6 @@ agents = Agents()
 def agentsFactory():
     arrayAgents = []
     researcher = agents.researcher()
-    google_sheets_writer = agents.google_sheets_writer()
-    google_sheets_reader = agents.google_sheets_reader()
     the_surgeon_programmer = agents.the_surgeon_programmer()
     the_copilot_programmer = agents.the_copilot_programmer()
     the_administrator = agents.the_administrator()
@@ -18,8 +16,6 @@ def agentsFactory():
     
     
     arrayAgents.append(researcher)
-    arrayAgents.append(google_sheets_writer)
-    arrayAgents.append(google_sheets_reader)
     arrayAgents.append(the_surgeon_programmer)
     arrayAgents.append(the_copilot_programmer)
     arrayAgents.append(the_administrator)
