@@ -19,7 +19,7 @@ from langchain.pydantic_v1 import BaseModel, Field
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 
-# from interpreter import interpreter
+from interpreter import interpreter
 
 search_tool = DuckDuckGoSearchRun()
 working_directory = TemporaryDirectory()
@@ -53,6 +53,11 @@ toolkit = FileManagementToolkit(
 )
 write_file_tool, list_directory_tool = toolkit.get_tools()
 
+print("Working directory:", working_directory.name);
+print("Working directory:", wd);
+print("API_BASE:", os.getenv("OPENAI_API_BASE"));
+print("API_KEY:", os.getenv("OPENAI_API_KEY"));
+print("MODEL_NAME:", os.getenv("OPENAI_MODEL_NAME"));
 
 # openai.api_base = os.getenv("OPENAI_API_BASE", "http://localhost:1234/v1")
 if(os.getenv("ENV") == "local"):
@@ -65,7 +70,7 @@ else:
     openai.api_base = os.getenv("OPENAI_API_BASE", "https://api.openai.com/v1")
     openai.api_key = os.getenv("OPENAI_API_KEY", "NA")
     openai.models = os.getenv("OPENAI_MODEL_NAME", "text-davinci-003")
-    # llm = ChatOpenAI(model="gpt-4-turbo-preview", api_key=os.getenv("OPENAI_API_KEY", "NA"))
+    llm = ChatOpenAI(model=os.getenv("OPENAI_MODEL_NAME") , api_key=os.getenv("OPENAI_API_KEY", "NA"))
 
 # interpreter.auto
 
@@ -77,23 +82,30 @@ class CLITool:
         return os.system(command)
     
 class GoogleSheetsLogger:
-    def __init__(self, sheet_id):
-        self.sheet_id = sheet_id
-        self.scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-        self.credentials = ServiceAccountCredentials.from_json_keyfile_name("credentials.json", self.scope)
-        self.client = gspread.authorize(self.credentials)
-        self.sheet = self.client.open_by_key(sheet_id).sheet1
+    @tool("Log event to Google Sheets")
+    def log_event(event):
+        """
+        Logs an event and appends a row to the Google Sheets spreadsheet.
 
-    def log_event(self, event):
-        # Adicione uma linha à planilha do Google Sheets
-        self.sheet.append_row([event])
+        Args:
+            event (str): The event to be logged.
+
+        Returns:
+            None
+        """
+        # Add a row to the Google Sheets spreadsheet
+        sheet_id = '12tOwOjx5UjBdpA7kGIbUFNaq4aO-3tA4ZNtyXyN3zXw'
+        scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
+        credentials = ServiceAccountCredentials.from_json_keyfile_name("credentials.json", scope)
+        client = gspread.authorize(credentials)
+        sheet = client.open_by_key(sheet_id).sheet1
+        
+        sheet.append_row([event])
         print(f"Event logged: {event}")
         
-class MarkdownDocumentor(tool):
-    def __init__(self, folder_path):
-        self.folder_path = folder_path
-
-    def generate_documentation(self, documentation_content, file_name):
+class MarkdownDocumentor:
+    @tool("Generate Markdown documentation")
+    def generate_documentation(documentation_content, file_name):
         """
         Generate Markdown documentation and save it to a file.
 
@@ -104,17 +116,16 @@ class MarkdownDocumentor(tool):
         Returns:
             str: A message indicating the success of the documentation generation and saving process.
         """
-        file_path = os.path.join(self.folder_path, file_name)
+        folder_path = 'outputs/documents'
+        file_path = os.path.join(folder_path, file_name)
         with open(file_path, 'w') as file:
             file.write(documentation_content)
         return f"Documentation saved successfully to '{file_path}'."
     
 # Define a tool to manage folders
-class FolderManager(tool):
-    def __init__(self, root_path):
-        self.root_path = root_path
-
-    def create_folder(self, folder_name):
+class FolderManager:
+    @tool("Create folder")
+    def create_folder( folder_name):
         """
         Create a folder in the root path.
 
@@ -124,12 +135,11 @@ class FolderManager(tool):
         Returns:
             str: A message indicating the success of folder creation.
         """
-        folder_path = os.path.join(self.root_path, folder_name)
+        
+        root_path = 'outputs'
+        folder_path = os.path.join(root_path, folder_name)
         os.makedirs(folder_path, exist_ok=True)
         return f"Folder '{folder_name}' created successfully."
-
-# Create a FolderManager instance
-folder_manager = FolderManager(root_path="./outputs")
 
 # Define additional agents
 board_member1 = Agent(
@@ -200,7 +210,7 @@ scrum_master = Agent(
     role="Scrum Master",
     goal="Improve project execution and coherence, and ensure conceptual integrity.",
     backstory="An experienced facilitator with a deep understanding of agile methodologies, dedicated to optimizing team performance and ensuring the conceptual integrity of the project.",
-    tools=[],
+    tools=[GoogleSheetsLogger.log_event],
     verbose=True
 )
 
@@ -208,7 +218,7 @@ qa_engineer = Agent(
     role="Quality Assurance Engineer",
     goal="Ensure that the code meets the specified requirements and functions as expected.",
     backstory="A meticulous tester with expertise in identifying and resolving software defects.",
-    tools=[],
+    tools=[MarkdownDocumentor.generate_documentation],
     verbose=True
 )
 
@@ -245,7 +255,8 @@ google_sheets_agent = Agent(
     role="Google Sheets Logger",
     goal="Save logs to Google Sheets",
     backstory="An agent dedicated to recording important events in Google Sheets for future reference.",
-    tools=[GoogleSheetsLogger("12tOwOjx5UjBdpA7kGIbUFNaq4aO-3tA4ZNtyXyN3zXw")],
+    allow_delegation=True,
+    tools=[GoogleSheetsLogger.log_event],
     verbose=True
 )
 
@@ -253,7 +264,7 @@ documenter_agent = Agent(
     role="Documenter",
     goal="Create and organize the project's technical documentation",
     backstory="An agent responsible for generating and organizing the project's technical documentation in Markdown files in the 'documents' folder. With a focus on using PHP and Laravel technologies.",
-    tools=[MarkdownDocumentor("documents")],
+    tools=[MarkdownDocumentor.generate_documentation],
     verbose=True
 )
 
@@ -262,7 +273,7 @@ folder_organizer_agent = Agent(
     role="Folder Organizer",
     goal="Organize the project into folders",
     backstory="An agent dedicated to organizing the project files into folders for better structure and management. With a focus on using PHP and Laravel technologies.",
-    tools=[folder_manager.create_folder],
+    tools=[FolderManager.create_folder],
     verbose=True
 )
 
@@ -329,11 +340,17 @@ files_management_task = Task(
     expected_output='Python code saved in a file'
 )
 
+save_logs_task = Task(
+    description='Save logs to Google Sheets',
+    agent=google_sheets_agent,
+    expected_output='Logs saved to Google Sheets successfully.'
+)
+
 # Define the crew
 crew = Crew(
     verbose=True,
     agents=[board_member1, board_member2, board_member3, surgical_programmer1, surgical_programmer2, surgical_programmer3, language_defender, editor, files_manager, researcher, google_sheets_agent, documenter_agent, folder_organizer_agent, scrum_master, qa_engineer],
-    tasks=[define_project_architecture, implement_payment_endpoints, optimize_system_performance, refactor_codebase, defend_language_integrity, review_and_document_code],
+    tasks=[define_project_architecture, implement_payment_endpoints, optimize_system_performance, refactor_codebase, defend_language_integrity, review_and_document_code, files_management_task],
     process=Process.sequential  # Sequential task execution
 )
 
