@@ -20,8 +20,8 @@ class Tasks():
                 
                 Create tasks for the identified areas.
                 Define the priority of the tasks.
-                Create all the tasks in the '/outputs/documents'.
-                Organize the tasks in the '/outputs/documents'.
+                Create all the tasks in a document in the '/outputs/documents'.
+                Organize the tasks in a document in the '/outputs/documents'.
                 Garantee that the tasks are being executed.
                 Create the project in Laravel.
                 Program the functionalities of the tasks.
@@ -85,7 +85,7 @@ class Tasks():
                 - Review the codebase
                 - Analyze the project progress
                 - Facilitate communication
-                - Analize tasks in the '/outputs/documents'
+                - Analize tasks in a document in the '/outputs/documents'
                 - Update the project timeline
                 - Execute code review
                 - Generate documentation
@@ -109,7 +109,7 @@ class Tasks():
                 For that, you need to:
                 - Review the codebase
                 - Analyze the project progress
-                - Analiyze tasks in the '/outputs/documents'
+                - Analiyze tasks in a document in the '/outputs/documents'
                 - Ask for feedback from the team members
                 - Provide feedback on the project progress
                 - Monitor project metrics
@@ -129,7 +129,7 @@ class Tasks():
                 For that, you need to:
                 - Review the codebase
                 - Analyze the project progress
-                - Analize tasks in the '/outputs/documents'
+                - Analize tasks in a document in the '/outputs/documents'
                 - Facilitate communication
                 - Study the project documentation
                 - Study the best practices for project architecture
@@ -150,12 +150,12 @@ class Tasks():
     def write_tasks_list_in_google_sheets(self, agent, context):
         return Task(
             description="""
-                Write the list of tasks to be completed in a '/outputs/documents' spreadsheet for better tracking and organization.
+                Write the list of tasks to be completed  a document inin a '/outputs/documents' spreadsheet for better tracking and organization.
                 
                 FOr that, you need to:
                 - Review the codebase
                 - Analyze the project progress
-                - Analize tasks in the '/outputs/documents'
+                - Analize tasks in a document in the '/outputs/documents'
                 - Facilitate communication
                 - Review the organization of the tasks
                 - If you need help, ask for feedback from the team members
@@ -166,12 +166,12 @@ class Tasks():
                 - If you have update the organization of the tasks, ask the team members for feedback""",
             agent=agent,
             context=context,
-            expected_output='A well-structured '/outputs/documents' document containing a list of tasks to be completed, along with relevant details such as task descriptions, assignees, due dates, and completion status.'
+            expected_output="""A well-struct a document inured '/outputs/documents' document containing a list of tasks to be completed, along with relevant details such as task descriptions, assignees, due dates, and completion status."""
         )
         
     def read_tasks_list_from_google_sheets(self, agent, context):
         return Task(
-            description="""Read the list of tasks from the '/outputs/documents' spreadsheet to gain insights into the project's task management and progress.""",
+            description="""Read the list of tasks from a document in the '/outputs/documents' spreadsheet to gain insights into the project's task management and progress.""",
             agent=agent,
             context=context,
             expected_output='A detailed overview of the project tasks, including task descriptions, assignees, due dates, and completion status. This information will help in tracking progress, identifying bottlenecks, and ensuring timely completion of tasks.'
@@ -202,8 +202,8 @@ class Tasks():
                 - Review the codebase
                 - Analyze the project progress
                 - Define the project architecture
-                - Write tasks list in '/outputs/documents'
-                - Read tasks list from '/outputs/documents'
+                - Write tasks lis a document int in '/outputs/documents'
+                - Read tasks list  a document infrom '/outputs/documents'
                 - Program the functionalities of the tasks
                 - Monitor project metrics
                 - Update project timeline
@@ -229,8 +229,8 @@ class Tasks():
                 - Review the codebase
                 - Analyze the project progress
                 - Define the project architecture
-                - Write tasks list in '/outputs/documents'
-                - Read tasks list from '/outputs/documents'
+                - Write tasks lis a document int in '/outputs/documents'
+                - Read tasks list  a document infrom '/outputs/documents'
                 - Review the organization of the tasks
                 - Read all code in the '/codebase' folder
                 - Read all code produced in the project
@@ -276,9 +276,9 @@ class Tasks():
                 - Review the codebase
                 - Analyze the project progress
                 - Review the organization of the tasks
-                - Verify the tasks in the '/outputs/documents'
+                - Verify the tasks in a document in the '/outputs/documents'
                 - Update the project timeline
-                - Update tasks status in the '/outputs/documents'
+                - Update tasks status in a document in the '/outputs/documents'
                 - Provide feedback on the project progress
                 - Monitor project metrics
                 - Ask feedback in the terminal to the user in the reminal (Translate the ask to portuguese brazilian)""",
