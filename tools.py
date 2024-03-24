@@ -4,6 +4,8 @@ import os
 
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
+from openai import openai
+from interpreter import interpreter
 
 @tool("Log event to Google Sheets")
 def write_in_google_sheets(event):
@@ -101,3 +103,19 @@ def create_folder( folder_name):
     folder_path = os.path.join(root_path, folder_name)
     os.makedirs(folder_path, exist_ok=True)
     return f"Folder '{folder_name}' created successfully."
+
+@tool("Interpret code with OpenAI")
+def interpret_code_with_openai(code):
+    """
+    Interprets code using OpenAI's code interpretation API.
+
+    Args:
+        code (str): The code to be interpreted.
+
+    Returns:
+        str: The interpretation of the code.
+    """
+    openai.api_key = 'your-api-key'
+    response = openai.Completion.create(engine="davinci-codex", prompt=code, temperature=0.5, max_tokens=100)
+    interpretation = response.choices[0].text.strip()
+    return interpretation
