@@ -1,0 +1,3 @@
+Task	Description	Assignee	Due Date	Status
+Create Google Sheets document with list of tasks, descriptions, assignees, and completion status	Create a detailed document to track project tasks	Google Sheets Writer	ASAP	In Progress
+Create Google Sheets document with list of tasks, descriptions, assignees, and completion status	Create a detailed document to track project tasks	Google Sheets Writer	ASAP	In Progress

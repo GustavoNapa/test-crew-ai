@@ -1,5 +1,7 @@
 from langchain.tools import tool
 
+import os
+
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 
@@ -42,3 +44,60 @@ def read_sheet_of_google_sheets():
     data = sheet.get_all_records()
     print(f"Sheet read: {data}")
     return data
+
+@tool("Write file to disk")
+def write_file(code, filename):
+    """
+    Writes code to a file on disk.
+
+    Args:
+        code (str): The code to be written to the file.
+        filename (str): The name of the file to write to.
+
+    Returns:
+        str: A message indicating the success of the operation.
+    """
+    with open(filename, "w") as file:
+        file.write(code)
+    return f"File written successfully: {filename}"
+
+@tool("Execute CLI command")
+def execute_command(command):
+    """Execute a command in the command line."""
+    print(f"Executing command: {command}")
+    return os.system(command)
+
+@tool("Generate Markdown documentation")
+def generate_documentation(documentation_content, file_name):
+    """
+    Generate Markdown documentation and save it to a file.
+
+    Args:
+        documentation_content (str): The content of the documentation in Markdown format.
+        file_name (str): The name of the file to save the documentation.
+
+    Returns:
+        str: A message indicating the success of the documentation generation and saving process.
+    """
+    folder_path = 'outputs/documents'
+    file_path = os.path.join(folder_path, file_name)
+    with open(file_path, 'w') as file:
+        file.write(documentation_content)
+    return f"Documentation saved successfully to '{file_path}'."
+
+@tool("Create folder")
+def create_folder( folder_name):
+    """
+    Create a folder in the root path.
+
+    Args:
+        folder_name (str): The name of the folder to create.
+
+    Returns:
+        str: A message indicating the success of folder creation.
+    """
+    
+    root_path = 'outputs'
+    folder_path = os.path.join(root_path, folder_name)
+    os.makedirs(folder_path, exist_ok=True)
+    return f"Folder '{folder_name}' created successfully."
