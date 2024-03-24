@@ -1,0 +1,186 @@
+{
+  "main": {
+    "id": "5c34712299a2ed60",
+    "type": "split",
+    "children": [
+      {
+        "id": "1dbff1a3d20de9a5",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "f5dd94fd78f83a0c",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "1-Documento-De-Visão.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "d64b291987cd54d6",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "2-Plano-de-Projeto.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "e0809ebf114a56fe",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "3-Diretrizes-para-endpoints.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ],
+        "currentTab": 2
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "7c8558ceb84b50ca",
+    "type": "split",
+    "children": [
+      {
+        "id": "2283603b96369779",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "566479caeb7362f1",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "858ca04646af49e7",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "47eb419b53853d3f",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "8fab6a700e64f5bc",
+    "type": "split",
+    "children": [
+      {
+        "id": "e35bf15cec1be753",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "58d12e74c675bf82",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "3-Diretrizes-para-endpoints.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "2f414a569eacd00a",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "3-Diretrizes-para-endpoints.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "b6c6a5c84592833a",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "15a84aa9b85d4151",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "3-Diretrizes-para-endpoints.md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Abrir a troca rápida": false,
+      "graph:Abrir visualização em gráfico": false,
+      "canvas:Criar novo canvas": false,
+      "daily-notes:Abrir a nota de hoje": false,
+      "templates:Inserir modelo": false,
+      "command-palette:Abrir paleta de comandos": false
+    }
+  },
+  "active": "e0809ebf114a56fe",
+  "lastOpenFiles": [
+    "PDFs/2024-03-12-3-Diretrizes-para-endpoints.pdf",
+    "2-Plano-de-Projeto.md",
+    "3-Diretrizes-para-endpoints.md",
+    "PDFs/2024-03-12-2-Plano-de-Projeto.pdf",
+    "PDFs/2024-03-12-1-Documento-De-Visão.pdf",
+    "PDFs",
+    "1-Documento-De-Visão.md",
+    "PDFs/2024-03-12-1-Documento-De-Visão.pdf",
+    "PDFs"
+  ]
+}

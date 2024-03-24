@@ -1,13 +1,14 @@
-## Project Timeline
+# Updated Project Timeline
 
-### Completed Tasks:
-1. Updated project documentation for Documento De Visão.
+## Current Progress:
+- Task 1: Completed
+- Task 2: In progress
+- Task 3: Not started
 
-### Upcoming Milestones:
-1. Define clear milestones and deliverables for Plano de Projeto.
-2. Standardize endpoint naming conventions and response formats for Diretrizes para Endpoints.
+## Upcoming Milestones:
+- Task 2 Completion: 01/25/2022
+- Task 3 Start: 01/26/2022
 
-### Revised Deadlines:
-1. Documento De Visão completion deadline: TBD
-2. Plano de Projeto completion deadline: TBD
-3. Diretrizes para Endpoints completion deadline: TBD
+## Revised Deadlines:
+- Task 2: 01/30/2022
+- Task 3: 02/10/2022

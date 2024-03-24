@@ -1,0 +1,1 @@
+<td {!! $attributes->merge(['class' => 'px-1 border-r border-slate-300 dark:border-slate-600']) !!}>{{$slot}}</td>

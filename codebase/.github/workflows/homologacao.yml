@@ -1,0 +1,23 @@
+on:
+  push:
+    branches:
+      - homologacao
+name: 🚀 Deploy website in HOMOLOG server on push
+jobs:
+  web-deploy:
+    name: 🎉 Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v2
+
+      - name: 📂 Sync files
+        uses: SamKirkland/FTP-Deploy-Action@4.0.0
+        with:
+          server: homologacao.ac7banks.com.br
+          username: ${{ secrets.ftp_homolog_user }}
+          password: ${{ secrets.ftp_homolog_password }}
+          server-dir: ac7-pay-homologacao/
+          exclude: 
+            AC7_PAY_BACKUP/**
+            AC7_PAY_BACKUP_2/**
