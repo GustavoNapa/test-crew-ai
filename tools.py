@@ -4,7 +4,6 @@ import os
 
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
-from openai import openai
 from interpreter import interpreter
 
 @tool("Log event to Google Sheets")
