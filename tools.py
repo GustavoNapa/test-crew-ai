@@ -107,7 +107,7 @@ def create_folder( folder_name):
 @tool("Interpret code with OpenAI")
 def interpret_code_with_openai(code):
     """
-    Interprets code using OpenAI's code interpretation API.
+    Interpret code using the OpenAI Codex model.
 
     Args:
         code (str): The code to be interpreted.
@@ -115,7 +115,4 @@ def interpret_code_with_openai(code):
     Returns:
         str: The interpretation of the code.
     """
-    openai.api_key = 'your-api-key'
-    response = openai.Completion.create(engine="davinci-codex", prompt=code, temperature=0.5, max_tokens=100)
-    interpretation = response.choices[0].text.strip()
-    return interpretation
+    return interpreter(code)
