@@ -11,19 +11,17 @@ from tasksFactory import tasksFactory
 
 import logging
 
-logging.basicConfig(level=logging.INFO, filename='crewai.log', filemode='w', format='%(datetime)s - %(levelname)s - $(message)s')
-logging.basicConfig(level=logging.ERROR, filename='crewai.log', filemode='w', format='%(datetime)s - %(levelname)s - $(message)s')
-logging.basicConfig(level=logging.WARNING, filename='crewai.log', filemode='w', format='%(datetime)s - %(levelname)s - $(message)s')
-
-# Loading Human Tools
-human_tools = load_tools(["human"])
+logging.basicConfig(level=logging.INFO, filename='crewai.log', filemode='w', format='%(name)s - %(levelname)s - %(message)s')
+logging.basicConfig(level=logging.ERROR, filename='crewai.log', filemode='w', format='%(name)s - %(levelname)s - %(message)s')
+logging.basicConfig(level=logging.WARNING, filename='crewai.log', filemode='w', format='%(name)s - %(levelname)s - %(message)s')
 
 load_dotenv(find_dotenv())
 
-llm = ChatOpenAI(model=os.getenv("OPENAI_MODEL_NAME") , api_key=os.getenv("OPENAI_API_KEY", "NA"))
+# llm = ChatOpenAI(model=os.getenv("OPENAI_MODEL_NAME") , api_key=os.getenv("OPENAI_API_KEY", "NA"))
 
 print("CrewAI is ready to go!")
-print("OpenAI model:", os.getenv("OPENAI_MODEL_NAME"))
+print("OpenAI URL:", os.getenv("OPENAI_API_URL"))
+# print("OpenAI model:", os.getenv("OPENAI_MODEL_NAME"))
 
 crew = Crew(
     verbose=True,
@@ -31,8 +29,6 @@ crew = Crew(
     tasks=tasksFactory(),
     step_callback=logging.info,
     full_output=True,
-    human_tools=human_tools,
-    usage_metrics=True,
 )
 
 result = crew.kickoff()
